@@ -1,0 +1,175 @@
+1) $lshw
+Exemple:
+$sudo lshw -html > hardwareinfo.html
+$sudo lshw -sanitize -html > hardwareinfo.html
+
+Comanda de mai sus creeaza un fisier html numit "hardwareinfo" care contine toate informatiile despre hardware-ul
+sistemului. 
+Pentru ascunderea informatiilor sensibile (ex: serial number-ul componentelor) se foloseste optiunea "-sanitize".
+
+2) $find
+Exemple: 
+$find -iname "*python*.txt"
+$find -name "*.txt" -exec grep -Hi "python" {} \;
+
+In primul exemplu se cauta in toate directoarele sistemului fisiere cu extensia ".txt" care au in titlu cuvantul 
+"python" fara a tine cont de minuscule sau majuscule.
+In cel de al doilea exemplu se cauta fisiere cu extensia ".txt" care au in continutul lor cuvantul "python" fara
+a tine cont de minuscule sau majuscule ("-exec" permite executarea comenzilor asupra fisierelor gasite, "-i" face 
+cautarea case insensitive, "grep" cauta siruri de caractere).
+
+3) $grep
+Exemple:
+$grep urgent TODOList.txt | grep -v "rezolvat$"
+$grep -Hi "python" *.txt
+
+Primul exemplu afiseaza din fisierul "TODOList.txt" randurile pe care se afla sirul de caractere "urgent" si 
+lipseste sirul de caractere "rezolvat".
+Al doilea exemplu indeplineste aceeasi functie cu exemplul 2 de la comanda "$find", diferenta fiind ca in acest
+caz se cauta fisiere doar in directorul curent.
+
+4) $ssh
+Exemplu:
+$ssh username@ip_host:port
+
+Comanda "ssh" este folosita pentru conectarea la un server/masina remote. "username" este username-ul la care
+se doreste conectarea, "ip_host" este adresa IP a host-ului la care se doreste conectarea, iar "port" reprezinta
+portul host-ului.
+
+5) $tar
+Exemple:
+$tar -cvf fisieretext.tar *.txt
+$tar -W fisieretext.tar
+$tar -r fisieretext.tar TODOList.txt
+
+Primul exemplu creeaza o arhiva noua ("-c") de tip ".tar" cu numele "fiseretext" care va contine toate fisierele text
+din directorul curent. Optiunea "-v" afiseaza in terminal progresul procesului de arhivare, iar optiunea "-f" ofera
+optiunea de a specifica numele arhivei.
+Al doilea exemplu verifica integritatea arhivei "fisieretext.tar".
+Exemplul 3 adauga fisierul "TODOList.txt" la arhiva "fisieretext.tar".
+
+6) $sudo <command>
+Exemple:
+$sudo bash
+$sudo dmesg
+$sude apt install ltrace
+
+Primul exemplu ofera utilizatorului privilegii de root, valabile pana la iesirea din shell-ul bash ("CTRL+D" 
+sau  "exit" in terminal). 
+Al doilea exemplu ofera utilizatorului privilegii root doar pentru acea comanda.
+Al treilea exemplu instaleaza ltrace.
+
+7) $top
+Exemple:
+$top -u user2
+$top -n 5
+
+Primul exemplu afiseaza procesele care apartin utilizatorului "user2". 
+Al doilea exemplu afiseaza toate procesele din sistem, da refresh la procese de 5 ori, apoi se opreste automat
+comanda.
+
+8) $chmod
+Exemple: 
+$chmod a+rwx getdatetime.sh
+$chmod 777 getdatetime.sh
+$chmod u+rwx,go-rwx txtfilecount.sh 
+
+In exemplul 1, fisierul script "getdatetime.sh" este facut accesibil tuturor utilizatorilor("a" = all) pentru
+citire("r"), scriere("w") si executare("x").
+Exemplul 2 este un alt mod de a scrie comanda de la exemplul 1.
+In exemplul 3, pentru fisierul script "txtfilecount.sh" doar detinatorul ("u" - owner) are drept de scriere, 
+citire si executare, iar restul utilizatorilor ("g" - group; "o" - others") nu detin nici un drept asupra sa.
+ 
+9) $chown
+Exemplu:
+$chown user3 orar.txt
+
+Comanda "chown" schimba detinatorul fisierului la "user3".
+
+10) $cp
+Exemple:
+$cp orar.txt backup_orar.txt
+$cp cp orar.txt backup_orar.txt fisiereimportante/
+
+Primul exemplu copiaza continutul fisierului "orar.txt" si il plaseaza in fisierul "backup_orar.txt". Daca 
+"backup_orar.txt" exista, acesta va fi suprascris. Daca nu exista, acesta va fi creat si va primi drept
+continut textul din interiorul fisierului "orar.txt".
+Al doilea exemplu copiaza fisierele "orar.txt" si "backup_orar.txt" in directorul "fisiereimportante".
+
+11) $mv
+Exemple:
+$mv pozeii.txt poezii.txt
+$mv poezii.txt /Documents/lectura/
+
+In primul exemplu, continutul fisierului "pozeii.txt" va fi sters, iar continutul sau va fi mutat in fisierul
+"poezii.txt". Daca fisierul "poezii.txt" nu exista, acesta va fi creat. Daca exista deja, continutul acestuia
+va fi inlocuit cu continutul fisierului din care se face copierea.
+In al doilea exemplu, fisierul "poezii.txt" este mutat in directorul "lectura", care se afla in directorul "Documents".
+
+12) $rm
+Exemple:
+$rm orar2018.json
+$rm -ir DirectorTest
+
+In exemplul 1, fisierul "orar2018.json" este sters.
+In exemplul 2, directorul "DirectorTest" este sters, alaturi de toate fisierele si directoarele pe care le 
+contine("-r"), iar inainte de stergerea fiecarui obiect, utilizatorul este intrebat daca doreste stergerea 
+acelui obiect("-i").
+
+13) $cd
+Exemple:
+$cd ..
+$cd /
+$cd ~
+$cd
+$cd Documents/Lectii
+$cd /home/user2/Documents/Lectii
+$cd ~/Documents/Lectii
+In exemplul 1, urca cu un nivel/directorul curent devine parintele celui anterior.
+In exemplul 2, directorul root devine director curent.
+In exemplul 3, directorul casa al utilizatorului devine director curent.
+In exemplul 4, directorul home devine directorul curent.
+In exemplul 5, directorul "Lectii" devine directorul curent prin cale relativa, iar in exemplul 6 directorul
+"Lectii" devine directorul curent prin cale absoluta.
+Exemplele 5, 6 si 7 sunt echivalente.
+
+14) $mkdir
+mkdir DirectorTest
+mkdir -p dir1 dir2/{dir2.1,dir2.2,dir2.3} dir3
+
+Primul exemplu creeaza in directorul curent un director cu numele "DirectorTest".
+Al doilea exemplu creeaza in directorul curent 3 directoare: "dir1", "dir2" si "dir3". Directorul "dir2" contine
+alte 3 directoare: "dir2.1", "dir2.2", "dir2.3". 
+
+15) $touch
+Exemple:
+$touch fisier.txt
+$touch -c fisier.txt
+
+In primul exemplu, daca fisierul "fisier.txt" nu exista, acesta va fi creat si va fi gol. Daca fisierul exista deja,
+ii va fi actualizata data la care a fost deschis si modificat ultima data.
+In al doilea exemplu, data la care a fost deschis si modificat ultima data fisierul va fi actualizata, iar daca 
+fisierul nu exista, optiunea "-c" impiedica crearea acestuia.
+
+16) $ls / ls -lah
+Exemple:
+$ls -lahS
+
+Comanda "ls" afiseaza fisierele si directoarele pe care le contine directorul curent. Optiunea "-l" le afiseaza
+in format lung, oferind detalii despre fisierele si directoarele afisate. Optiunea "-a" afiseaza inclusiv obiectele
+ascunse. Optiunea "-h" face ca afisarea sa fie efectuata intr-un format usor de citit, iar optiunea "-S" ordoneaza
+descrescator afisarea in functie de dimensiunea fisierelor si directoarelor.
+ 
+17) $strace uname
+Exemplu:
+$strace -o rezultat.txt uname
+
+Comanda "strace" ("system trace") afiseaza toate apelurile pe care comanda "uname" le face catre sistem, iar optiunea 
+"-o" salveaza output-ul in fisierul "rezultat.txt".
+
+18) $ltrace uname
+Exemplu:
+$ltrace -o rezultat.txt uname
+
+Comanda "ltrace" ("library trace") afiseaza toate apelurile pe care comanda "uname" le face catre diferite librarii, 
+iar optiunea "-o" salveaza output-ul in fisierul "rezultat.txt".

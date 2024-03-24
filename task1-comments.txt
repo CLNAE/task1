@@ -1,0 +1,52 @@
+1) $uname -a 
+Comanda "uname" afiseaza numele kernel-ului. Optiunea "-a" (all) face comanda sa afiseze numele,versiunea si 
+data de release a kernel-ului, arhitectura procesorului si sistemul de operare.
+
+2 & 3) $cat /proc/cpuinfo & $cat /proc/meminfo 
+Comanda "cat" afiseaza in terminal continutul unui fisier text. "/proc/" este un file system virtual al Linux care 
+este gol, fisierele din acesta fiind create de kernel la etapa de boot a sistemului si sterse la inchiderea sistemului.
+Aici se afla informatii despre sistem (versiune, procese, partitii, cpu, memorie).
+"cpuinfo" este un fisier in care sunt informatii despre cpu: numele modelului, numele producatorului, frecventa, 
+numarul de nuclee, familia de procesoare din care face parte.
+"meminfo" este un fisier in care sunt stocate informatii despre memorie: memoria totala, memoria libera,
+memoria disponibila, cache.
+
+4) $dmesg
+Comanda "dmesg" afiseaza mesajele generate de kernel in timpul procesului de bootare si pe parcursul timpului 
+in care sistemul ruleaza. Mesajele contin informatii despre interactiunile kernel-ului cu componentele, 
+dispozitivele conectate si potentialele erori intampinate de kernel.
+
+5) $pstree -p
+Comanda "pstree" afiseaza procesele care ruleaza sub forma unui arbore. Optiunea "-p" afiseaza numarul de 
+identificare (PID) a fiecarui proces dupa numele acestuia, iar informatiile sunt prezentate pe larg ("-p" dezactiveaza 
+afisarea compacta).
+
+6) $apt list --installed
+"APT" (Advanced Packaging Tool) este un manager de pachete care pune la dispozitia utilizatorului comenzi pentru
+cautarea, gestionarea si afisarea de informatii a pachetelor. Comanda "list" afiseaza o lista de pachete. Optiunea 
+"--installed" afiseaza doar pachetele instalate.
+
+7) $systemctl list-units --all --type=service --state=active
+"systemctl" controleaza "systemd" si managerul de servicii. "systemd" este un manager de sistem si procese specific
+Linux. Comanda "list-units" afiseaza unit-urile pe care "systemd" le are in memorie. Optiunea "--all" specifica 
+afisarea tuturor unit-urilor. "--type=service" arata tipul de unit-uri afisate, in aces caz servicii. Exemple de 
+unit-uri: servicii, mount point-uri, device-uri. "--state=active" face sa fie afisate doar serviciile active la
+momentul actual.
+
+8) $ps aux
+Comanda "ps" (process status) afiseaza procesele active la momentul curent. Optiunea "a" afiseaza procesele tuturor
+userilor, "u" afiseaza numele userului de care apartine procesul, iar "x" afiseaza toate procesele, inclusiv cele
+care nu au legatura cu terminalul.
+
+9) $ping 8.8.8.8
+Comanda "ping" se foloseste pentru a verifica conexiunea la internet, daca sunt probleme cu conexiunea (latenta 
+mare, pachete pierdute) sau pentru a verifica daca o adresa IP este online. Pe parcursul rularii ne sunt afisate
+secventele icmp echo request trimise, durata de timp pentru care un pachet exista in retea (ttl/time to live), 
+dimensiunea unui pachet si durata de timp de la trimiterea pachetului la adresa specificata (in cazul acesta 8.8.8.8)
+pana la intoarcerea acestuia (latenta). La oprirea rularii comenzii ne este afisat numarul total de pachete trimise, 
+numarul de pachete primite, procentul de pachete pierdute, durata rularii comenzii si diferite statistici despre
+latenta (minima, medie, maxima, deviatia standard)
+
+10) $ip add
+Comanda "ip add" (sau "ip address") ne afiseaza informatii despre adresele locale IP ale sistemului (IPv4, IPv6,
+localhost, default gateway).
